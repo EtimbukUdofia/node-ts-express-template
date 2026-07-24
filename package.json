@@ -1,0 +1,20 @@
+{
+  "name": "node-ts-express-template",
+  "version": "1.0.0",
+  "description": "This is a template for backend projects written in NodeJs, Express and Typescript",
+  "homepage": "https://github.com/EtimbukUdofia/node-ts-express-template#readme",
+  "bugs": {
+    "url": "https://github.com/EtimbukUdofia/node-ts-express-template/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EtimbukUdofia/node-ts-express-template.git"
+  },
+  "license": "ISC",
+  "author": "Etimbuk Udofia",
+  "type": "modulejs",
+  "main": "dist/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
