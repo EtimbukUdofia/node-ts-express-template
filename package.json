@@ -25,7 +25,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
-    "test": "jest --runInBand",
+    "test": "jest --runInBand --passWithNoTests",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage --runInBand",
     "prepare": "husky"
