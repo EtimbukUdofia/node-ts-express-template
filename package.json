@@ -12,13 +12,23 @@
   },
   "license": "MIT",
   "author": "Etimbuk Udofia",
-  "type": "module",
   "main": "dist/server.js",
   "engines": {
     "node": ">=20.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "test": "jest --runInBand",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage --runInBand",
+    "prepare": "husky"
   },
   "dependencies": {
     "compression": "^1.8.1",
