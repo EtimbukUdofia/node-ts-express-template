@@ -10,10 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/EtimbukUdofia/node-ts-express-template.git"
   },
-  "license": "ISC",
+  "license": "MIT",
   "author": "Etimbuk Udofia",
-  "type": "modulejs",
+  "type": "module",
   "main": "dist/server.js",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   }
