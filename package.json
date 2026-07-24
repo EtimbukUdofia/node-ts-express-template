@@ -27,7 +27,7 @@
     "typecheck": "tsc --noEmit",
     "test": "jest --runInBand --passWithNoTests",
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage --runInBand",
+    "test:cov": "jest --coverage --runInBand --passWithNoTests",
     "prepare": "husky",
     "clean": "rimraf dist coverage"
   },
