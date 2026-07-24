@@ -28,7 +28,8 @@
     "test": "jest --runInBand --passWithNoTests",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage --runInBand",
-    "prepare": "husky"
+    "prepare": "husky",
+    "clean": "rimraf dist coverage"
   },
   "dependencies": {
     "compression": "^1.8.1",
