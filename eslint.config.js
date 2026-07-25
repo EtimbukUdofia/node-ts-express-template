@@ -1,14 +1,14 @@
 // @ts-check
-const eslint = require('@eslint/js');
-const tseslint = require('typescript-eslint');
-const prettierConfig = require('eslint-config-prettier');
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import prettierConfig from 'eslint-config-prettier';
 
-module.exports = tseslint.config(
+export default tseslint.config(
   {
     ignores: ['dist/**', 'coverage/**', 'node_modules/**', 'eslint.config.js'],
   },
-  eslint.configs.recommended,
-  ...tseslint.configs.recommended,
+  js.configs.recommended,
+  tseslint.configs.recommended,
   prettierConfig,
   {
     languageOptions: {
