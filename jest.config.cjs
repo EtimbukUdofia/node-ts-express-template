@@ -1,6 +1,6 @@
-import type { Config } from 'jest';
+/** @type {import('jest').Config} */
 
-const config: Config = {
+module.exports = {
   clearMocks: true,
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.ts', '!src/server.ts', '!src/types/**'],
@@ -12,5 +12,3 @@ const config: Config = {
   testMatch: ['<rootDir>/tests/**/*.test.ts'],
   verbose: true,
 };
-
-export default config;

@@ -66,6 +66,7 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.65.0"
   },
+  "type": "module",
   "lint-staged": {
     "*.{ts,js}": [
       "eslint --fix",
