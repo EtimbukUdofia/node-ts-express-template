@@ -16,7 +16,12 @@ function shutdown(signal: string, exitCode = 0): void {
   isShuttingDown = true;
 
   logger.info(`${signal} received. Shutting down gracefully...`);
-  server.close(() => {
+  server.close((err) => {
+    if (err) {
+      logger.error({ err }, 'Failed to close HTTP server.');
+      process.exit(1);
+    }
+
     logger.info('HTTP server closed.');
     process.exit(exitCode);
   });
