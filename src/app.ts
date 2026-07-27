@@ -6,6 +6,8 @@ import { logger } from './utils/logger';
 import { pinoHttp } from 'pino-http';
 import { randomUUID } from 'node:crypto';
 import { env } from './config';
+import { notFoundHandler } from './middlewares/notFound.middleware';
+import { errorHandler } from './middlewares/error.middleware';
 
 export function createApp(): Application {
   const app = express();
@@ -23,6 +25,9 @@ export function createApp(): Application {
   app.use(compression());
   app.use(express.json({ limit: '10kb' }));
   app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+
+  app.use(notFoundHandler);
+  app.use(errorHandler);
 
   return app;
 }
