@@ -7,14 +7,8 @@ import { pinoHttp } from 'pino-http';
 import { randomUUID } from 'node:crypto';
 import { env } from './config';
 
-export function creatApp(): Application {
+export function createApp(): Application {
   const app = express();
-
-  app.use(helmet());
-  app.use(cors({ origin: env.CORS_ORIGIN }));
-  app.use(compression());
-  app.use(express.json({ limit: '10kb' }));
-  app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
   app.use(
     pinoHttp({
@@ -23,6 +17,12 @@ export function creatApp(): Application {
       autoLogging: env.NODE_ENV !== 'test',
     }) as RequestHandler,
   );
+
+  app.use(helmet());
+  app.use(cors({ origin: env.CORS_ORIGIN }));
+  app.use(compression());
+  app.use(express.json({ limit: '10kb' }));
+  app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
   return app;
 }
