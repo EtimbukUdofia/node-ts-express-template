@@ -1,22 +1,30 @@
-import { creatApp } from './app';
+import { createApp } from './app';
 import { env } from './config';
 import { logger } from './utils/logger';
 
-const app = creatApp();
+const app = createApp();
 
 const server = app.listen(env.PORT, () => {
   logger.info(`Server running in ${env.NODE_ENV} mode on port ${env.PORT}`);
 });
 
-function shutdown(signal: string): void {
-  logger.info(`${signal} recieved. Shutting down gracefully...`);
+let isShuttingDown = false;
+
+function shutdown(signal: string, exitCode = 0): void {
+  if (isShuttingDown) return;
+
+  isShuttingDown = true;
+
+  logger.info(`${signal} received. Shutting down gracefully...`);
   server.close(() => {
     logger.info('HTTP server closed.');
-    process.exit(0);
+    process.exit(exitCode);
   });
 
+  server.closeIdleConnections();
+
   // force exit if shutdown hangs
-  setTimeout(() => process.exit(1), 10_000).unref();
+  setTimeout(() => process.exit(exitCode), 10_000).unref();
 }
 
 process.on('SIGTERM', () => shutdown('SIGTERM'));
@@ -24,10 +32,10 @@ process.on('SIGINT', () => shutdown('SIGINT'));
 
 process.on('unhandledRejection', (reason) => {
   logger.error({ reason }, 'Unhandled Rejection');
-  throw reason;
+  shutdown('Unhandled Rejection', 1);
 });
 
 process.on('uncaughtException', (err) => {
   logger.fatal({ err }, 'Uncaught Exception - shutting down');
-  process.exit(1);
+  shutdown('Uncaught Exception', 1);
 });
